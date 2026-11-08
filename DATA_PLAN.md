@@ -2,6 +2,8 @@
 
 Strathmore NLP Hub Datathon 2026
 
+**Version 4.** Revised on Sunday 8 November 2026. The team has two members and uses an outside Kamba language reviewer. This version replaces the earlier plans.
+
 ## 1. Team and task
 
 | Field | Value |
@@ -9,30 +11,43 @@ Strathmore NLP Hub Datathon 2026
 | Team number | 1 |
 | Track | B: sentiment analysis |
 | Language | Kamba (ISO 639-3: kam), language code in data: `kam-KE` |
-| Kamba variety | [TO CONFIRM at Meeting 1, for example Machakos or Kitui Kamba. Set by Member 3.] |
+| Kamba variety | Kitui Kamba |
 | Labels | `positive`, `negative`, `neutral` |
 | Unit of annotation | One sentence, one declared target |
-| Plan date | Saturday 7 November 2026 |
 | Final submission deadline | Wednesday 11 November 2026, 11:59 p.m. EAT |
 
-**Status of this file:** committed before any Kamba data was written. Items marked TO CONFIRM are decided at Meeting 1 and recorded here by committing an updated version.
+Items marked TO CONFIRM are decided and recorded here by committing an updated version.
 
-## 2. Domain and target
+## 2. People and roles
 
-- **Domain:** campus Wi-Fi feedback. [TO CONFIRM at Meeting 1. If the team changes domain, edit this line and commit before writing data.]
-- **Target of opinion:** the campus Wi-Fi service (for example its speed, reliability, coverage, or the support received).
+| Person | Role | Code |
+|---|---|---|
+| Ian | Author, data documentation lead, coordinator | T01-A |
+| Austin | Author, code, model and demo lead, coordinator | T01-B |
+| Outside Kamba reviewer | Independent language reviewer (Kitui Kamba) | T01-R |
+
+- Ian and Austin write the sentences and keep the source log, the model, the demo and the documents.
+- The outside reviewer is a fluent Kitui Kamba speaker who is not a team member. They check every test record and a large sample of the other records for naturalness and label. Their identity is kept private; only the code `T01-R` appears in the data and documents.
+- **Language competence (to be stated truthfully in the dataset card):** [TO CONFIRM: each author's connection to Kitui Kamba, for example first language, spoken at home, and any limits.]
+- The organisers (Kevin and Titus) have been or will be told that the team has two members and uses an outside reviewer. Their reply is kept. The team does not lower any target on its own.
+
+## 3. Domain and target
+
+- **Domain:** [TO CONFIRM: one domain the authors and reviewer can speak about naturally. Candidate: campus Wi-Fi feedback.]
+- **Target of opinion:** [TO CONFIRM, for example "the campus Wi-Fi service"].
 - Every sentence is labelled only for the opinion it expresses toward this target. One domain and one target for the whole dataset.
+- Write what a Kitui Kamba speaker would naturally say in a real situation. Do not translate English sentences word for word.
 
-## 3. Source method
+## 4. Source method
 
 - **source_method:** `original_human`.
 - **source_dataset:** `team_authored`, **source_version:** `v1`, **source_url:** `not_applicable`.
-- **licence_or_permission:** `documented_contributor_permission`. Each author gives written permission for the sentences to be used in the datathon and the NLP Hub review. The evidence is kept in a private folder, not in the public repository.
+- **licence_or_permission:** `documented_contributor_permission`. Each author, and the reviewer for any wording they supply, gives written permission (a signed note or a saved message) for the sentences to be used in the datathon and the NLP Hub review. The evidence is kept in a private folder, not in the public repository.
 - Kamba is not covered by AfriSenti. No external dataset is used and none counts toward the contribution target.
-- All sentences are written by Kamba speakers on the team. We do not use machine translation. We do not use AI to generate sentences. AI may be used for code and explanations only and will be declared in the contribution and AI-use statement.
+- No machine translation. No AI-generated sentences. AI may be used for code and explanations only and will be declared in the contribution and AI-use statement.
 - Sentences contain no names, phone numbers, admission numbers or other personal details.
 
-## 4. Labels and annotation rules
+## 5. Labels and annotation rules
 
 | Label | Use when |
 |---|---|
@@ -40,14 +55,14 @@ Strathmore NLP Hub Datathon 2026
 | `negative` | The sentence expresses disapproval of the target. |
 | `neutral` | The sentence states a fact or asks something without a clear opinion. |
 
-Rules (details in the annotation guide):
+Details are in `ANNOTATION_GUIDE.md`. In short:
 - Read the whole sentence. Negation can reverse meaning. Do not label from one favourable or unfavourable word.
-- Exclude mixed opinion, sarcasm and unclear targets. Record each one in the Exclusion Log with a reason.
+- Exclude mixed opinion, sarcasm and unclear targets, and record each in the Exclusion Log with a reason.
 - Include on purpose: minimal pairs (same words, opposite label), negation, neutral sentences that contain evaluative words, and opinions with no obvious sentiment word.
-- Vary length, word order and vocabulary. Do not create data by swapping one word or name in a template.
-- Keep original spelling and diacritics. Record real code-switching (Swahili or English) in the `code_switching` column.
+- Vary length, word order and vocabulary. No template swapping.
+- Keep original spelling and diacritics. Record genuine code-switching in the `code_switching` column.
 
-## 5. Dataset size and splits
+## 6. Dataset size and splits
 
 | Label | Train | Dev | Test | Total |
 |---|---|---|---|---|
@@ -56,58 +71,57 @@ Rules (details in the annotation guide):
 | neutral | 60 | 20 | 20 | 100 |
 | **Total** | 180 | 60 | 60 | **300** |
 
-- Minimum is 300 accepted records. We aim for a few extra so weak records can be dropped during review.
-- **Grouping:** minimal pairs, paraphrases and sentences built from the same idea share a `group_id` and stay in one split. A group is never split across train, dev and test.
+- Minimum is 300 accepted records. A few extra are written so weak records can be dropped during review.
+- **Grouping:** minimal pairs, paraphrases and sentences built from the same idea share a `group_id` and stay in one split.
 - Test data is used once, after the model, data and settings are frozen.
 
-## 6. Authorship and review plan
+## 7. Authorship and independent review
 
-| Member | Role | Code | Writes | Reviews |
-|---|---|---|---|---|
-| Member 1 (Ian) | Data Documentation Lead | T01-A | About 100 records, including 30 test records | Documents and counts |
-| Member 2 | Code | T01-B | About 100 records, including 30 test records | Code and demo |
-| Member 3 | Language Review | T01-C | About 100 records, train and dev only | All 60 test records, and at least 20 percent of other train and dev records |
+- Ian (T01-A) and Austin (T01-B) each write about half of the records, with about 30 of the 60 test records each (10 per label).
+- **Every test record is reviewed by the outside reviewer (T01-R).** `reviewer_code` is `T01-R` and `review_status` is `independently_reviewed`.
+- The outside reviewer also reviews at least 50 percent of the train and dev records, or all of them if time allows. Records not reviewed are marked `self_reviewed`.
+- If the reviewer corrects or rewrites a sentence, the corrected wording is used. The original and the correction are recorded in the Review Log with the reason, and the source log notes the change in `adjudication_note`.
+- Where the reviewer judges a sentence unnatural or its label unclear, it is excluded and logged rather than forced.
+- The two team members do not review each other's Kamba as a substitute for the outside reviewer, and do not mark a record `independently_reviewed` unless the outside reviewer actually reviewed it.
+- If the reviewer cannot finish all test records, this is raised with the organisers at once and recorded honestly.
 
-- Every test record is independently reviewed. `reviewer_code` must differ from `contributor_code`.
-- Member 3 writes no test records, so that they can review the whole test set independently.
-- Disagreements and corrections are recorded in the Review Log with the original value, the corrected value and the reason.
-- **Assumption to confirm at Meeting 1:** only Member 3 is confirmed fluent in Kamba. If another member is not fluent they do not author or review Kamba text. Ask the organisers or mentor for a second fluent reviewer if needed.
+## 8. Source log
 
-## 7. Source log
+- **File:** `data/Kamba_Source_Log.xlsx` in the repository, with a shared working copy in Google Drive. The repository copy is updated at the data freeze.
+- **One row per accepted sentence.** It records `record_id`, `text`, `label`, `contributor_code`, `reviewer_code`, `review_status`, `group_id`, `split`, `variant` (original, minimal_pair, paraphrase, translation), `adjudication_note`, plus `english_gloss` and `code_switching` as helper columns.
+- **Record IDs:** `T01-A-001` for Ian's records and `T01-B-001` for Austin's.
+- **Companion sheets:** Groups, Tally, Exclusion Log, Review Log.
+- **Export:** columns A to Q only, saved as UTF-8 CSV to `data/contribution.csv` after the data freeze, with no `pending_review` rows.
 
-- **File:** `Kamba_Source_Log.xlsx`, kept in the team repository under `data/` (cleared data only; no private evidence).
-- **One row per accepted sentence.** It records: `record_id`, `text`, `label`, `contributor_code`, `reviewer_code`, `review_status`, `group_id`, `split`, `variant` (original, minimal_pair, paraphrase, translation), `adjudication_note`, plus `english_gloss` and `code_switching` as helper columns.
-- **Constant fields** (`language`, `source_dataset`, `source_version`, `source_record_id`, `source_url`, `source_method`, `licence_or_permission`) fill from the Settings sheet.
-- **Record IDs:** `T01-<letter>-<number>` (for example `T01-A-001`). Each member numbers their own records.
-- **Companion sheets:** Groups (keeps related sentences together), Tally (counts against targets), Exclusion Log, Review Log.
-- **Export:** columns A to Q only, saved as UTF-8 CSV to `data/contribution.csv` after the data freeze. No `pending_review` rows in the export.
-
-## 8. Dates and meetings
+## 9. Dates and meetings
 
 | Date (EAT) | Milestone |
 |---|---|
-| Sat 7 Nov | Repo, DATA_PLAN.md, annotation guide v0, 30-sample set. Meetings 1 (5:00 pm) and 2 (9:00 pm). |
-| Sun 8 Nov | Bulk writing, test review starts. Meeting 3 (8:00 pm). |
-| Mon 9 Nov | Data complete, test review finished. Meeting 4 (1:00 pm). Data freeze at Meeting 5 (9:00 pm). |
-| Tue 10 Nov | Dev experiments, one final test run, demo, documents. Meetings 6 (2:00 pm) and 7 (8:00 pm). |
-| Wed 11 Nov | Tag `submission-v1`, record the full commit SHA, make the ZIP, submit. Meeting 8 (10:00 am). |
+| Sun 8 Nov | Confirm the reviewer, permission, domain and the organisers' reply. First writing session. Meeting at 8:00 pm to check counts and balance (about 25 per label each). |
+| Mon 9 Nov | Finish writing by 1:00 pm (meeting). Reviewer checks test records and a sample of the rest, 1:00 to 6:00 pm. Data freeze meeting at 9:00 pm. |
+| Tue 10 Nov | Dev experiments, code freeze at noon, one final test run at 1:00 pm. Results meeting at 2:00 pm. Demo, recording and documents. Dry run at 8:00 pm. |
+| Wed 11 Nov | Final check at 10:00 am. Tag `submission-v1`, record the full commit SHA, make the ZIP. Submit by 6:00 pm. |
 
-## 9. Quality and integrity commitments
+If the data is not ready by Monday 9:00 pm, the freeze may slip to Tuesday 9:00 am at most. The reviewer's time is the main limit, so write and send records in batches rather than all at the end.
+
+## 10. Quality and integrity commitments
 
 - No practice rows count as contribution. No unchanged downloads are used.
 - Test data is not used for tuning. Dev results are never reported as test results. No scores are invented.
 - Disputed or unclear-rights records are quarantined and noted, not hidden.
 - The demo uses the trained model on new input. It states the detected opinion and shows an uncalibrated probability. It does not answer the text.
-- The model is evaluated against a majority-class baseline. A separate challenge set (negation, neutral sentences with evaluative words, opinions without obvious sentiment words) is reported separately and never used for training.
+- The model is compared with a majority-class baseline. A challenge set (negation, neutral sentences with evaluative words, opinions without obvious sentiment words), 15 cases written by each author and checked by the reviewer, is reported separately and never used for training.
+- The dataset card states the limitations: two authors, one outside reviewer, one variety (Kitui Kamba), one domain.
 
-## 10. Open decisions (fill in at Meeting 1)
+## 11. Open decisions
 
-- [ ] Domain and target confirmed: campus Wi-Fi feedback / other: ________
-- [ ] Kamba variety: ________
-- [ ] Who is fluent in Kamba, and any second reviewer: ________
-- [ ] Where the meetings take place (call or in person): ________
-- [ ] Private permission evidence folder location (not in the repo): ________
+- [ ] Reviewer confirmed, with the hours they can give before Monday evening: ________
+- [ ] Written permission from each author and the reviewer recorded privately: ________
+- [ ] Organisers informed and reply recorded: ________
+- [ ] Language competence of each author in Kitui Kamba described: ________
+- [ ] Domain and target confirmed: ________
+- [ ] Private evidence folder location (not in the repo): ________
 
-## 11. Attribution
+## 12. Attribution
 
-Built from the Strathmore NLP Datathon 2026 Starter Kit v2.0 and handbook. The Kamba data is the team's own work.
+Built from the Strathmore NLP Datathon 2026 Starter Kit v2.0 and handbook. The Kamba data is written by the two team members and reviewed by an outside fluent Kitui Kamba speaker.
